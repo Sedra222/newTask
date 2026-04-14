@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To Do List</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>✨ My To Do List</h1>
+
+    <form action="/" method="POST" class="add-form">
+      <input type="text" name="newItem" placeholder="Enter new task..." required>
+      <button type="submit">Add</button>
+    </form>
+
+    <ul>
+      <% items.forEach((item, index) => { %>
+
+        <li>
+          <form action="/check" method="POST" class="task">
+
+            <input type="hidden" name="index" value="<%= index %>">
+
+            <label>
+              <input 
+                type="checkbox" 
+                onChange="this.form.submit()" 
+                <%= item.done ? "checked" : "" %>
+              >
+
+              <span class="<%= item.done ? 'done' : '' %>">
+                <%= item.text %>
+              </span>
+            </label>
+
+          </form>
+        </li>
+
+      <% }) %>
+    </ul>
+
+  </div>
+
+</body>
+</html>
